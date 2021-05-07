@@ -1,2 +1,2 @@
-# wheather
+# weather
 my tiny wheather app
