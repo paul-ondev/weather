@@ -1,2 +1,2 @@
 # weather
-my tiny wheather app
+my tiny weather app
