@@ -5,6 +5,9 @@ window.addEventListener('load', ()=>{
     let temperatureDegree = document.querySelector(".temperature-degree");
     let locationTimezone = document.querySelector(".location-timezone");
     let temperatureDescription = document.querySelector(".temperature-description");
+    let degreeUnit = document.querySelector('.degree-unit');
+    let degreeSection = document.querySelector('.degree-section');
+    //let temperatureDegree = document.querySelector('.temperature-degree');
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -21,11 +24,26 @@ window.addEventListener('load', ()=>{
                 .then(data => {
                     console.log(data);
                     //set DOM elements from the api
-                    temperatureDegree.textContent = Math.round(data.main.temp - 273.15);
+                    let celcius = Math.round(data.main.temp - 273.15);
+                    temperatureDegree.textContent = celcius;
+                    let fahrenheit = Math.round((data.main.temp - 273.15) * 1.8 + 32);
                     locationTimezone.textContent = `UTC +${data.timezone/3600}`;
                     temperatureDescription.textContent = data.weather[0].description;
+                    
                     //set icon according to data from the API 
-                    setIcon(data.weather[0].icon, data.weather[0].main)
+                    setIcon(data.weather[0].icon, data.weather[0].main);
+                    //Swap between C and F
+                    function temperatureSwap() {
+                        if (degreeUnit.textContent == "C") {
+                            degreeUnit.textContent = "F";
+                            temperatureDegree.textContent = fahrenheit;
+                        } else {
+                            degreeUnit.textContent = "C";
+                            temperatureDegree.textContent = celcius;
+                        }
+                    }
+
+                    degreeSection.addEventListener('click', temperatureSwap);
 
                 })
 
@@ -39,4 +57,5 @@ window.addEventListener('load', ()=>{
         img.src = `http://openweathermap.org/img/wn/${iconNumber}@2x.png`;
         
     }
+    
 })
