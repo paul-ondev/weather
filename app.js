@@ -28,7 +28,7 @@ window.addEventListener('load', ()=>{
                     temperatureDegree.textContent = celcius;
                     let fahrenheit = Math.round((data.main.temp - 273.15) * 1.8 + 32);
                     locationTimezone.textContent = `UTC +${data.timezone/3600}`;
-                    temperatureDescription.textContent = data.weather[0].description;
+                    temperatureDescription.textContent = toUpperCaseInSentence(data.weather[0].description);
                     
                     //set icon according to data from the API 
                     setIcon(data.weather[0].icon, data.weather[0].main);
@@ -56,6 +56,15 @@ window.addEventListener('load', ()=>{
         img.alt = mainDescription;
         img.src = `http://openweathermap.org/img/wn/${iconNumber}@2x.png`;
         
+    }
+
+    function toUpperCaseInSentence(mySentence) {
+        const words = mySentence.split(" ");
+
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+        return words.join(" ");
     }
     
 })
