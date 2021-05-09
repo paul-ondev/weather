@@ -33,12 +33,12 @@ window.addEventListener('load', ()=>{
                     setIcon(data.weather[0].icon, data.weather[0].main);
                     //Swap between C and F
                     function temperatureSwap() {
-                        if (degreeUnit.textContent == "C") {
-                            degreeUnit.textContent = "F";
-                            temperatureDegree.textContent = fahrenheit;
+                        if (degreeUnit.innerHTML == "C") {
+                            degreeUnit.innerHTML = "F";
+                            temperatureDegree.innerHTML = fahrenheit;
                         } else {
-                            degreeUnit.textContent = "C";
-                            temperatureDegree.textContent = celcius;
+                            degreeUnit.innerHTML = "C";
+                            temperatureDegree.innerHTML = celcius;
                         }
                     }
 
