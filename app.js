@@ -7,7 +7,6 @@ window.addEventListener('load', ()=>{
     let temperatureDescription = document.querySelector(".temperature-description");
     let degreeUnit = document.querySelector('.degree-unit');
     let degreeSection = document.querySelector('.degree-section');
-    //let temperatureDegree = document.querySelector('.temperature-degree');
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -27,7 +26,7 @@ window.addEventListener('load', ()=>{
                     let celcius = Math.round(data.main.temp - 273.15);
                     temperatureDegree.textContent = celcius;
                     let fahrenheit = Math.round((data.main.temp - 273.15) * 1.8 + 32);
-                    locationTimezone.textContent = `UTC +${data.timezone/3600}`;
+                    locationTimezone.innerHTML = `UTC +${data.timezone/3600}<br>${data.sys.country}/${data.name}`;
                     temperatureDescription.textContent = toUpperCaseInSentence(data.weather[0].description);
                     
                     //set icon according to data from the API 
